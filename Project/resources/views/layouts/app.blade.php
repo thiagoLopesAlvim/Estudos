@@ -9,17 +9,25 @@
    
 </head>
 <body>
-    <head>
-    @yield('header')
-    </head>
-    <div class="content">
-            @yield('content')
-
-       
+            <section class="container px-4 mx-auto">
+            <head>
+            @yield('header')
             
-    </div>
-    <footer>
+            
+              
+		    </div>
+            </head>
 
-    </footer>
+
+            <div class="content">
+                    @yield('content')
+
+            
+                    
+            </div>
+            <footer>
+
+            </footer>
+    </section>
 </body>
 </html>
