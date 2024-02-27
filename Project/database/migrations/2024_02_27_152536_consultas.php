@@ -21,7 +21,7 @@ return new class extends Migration
         $table->string("CPF");
         $table->string("endereco");
         $table->text('observacao');
-        $table->enum("tippagamento",['d','c','p','d']);
+        $table->enum("tippagamento",['d','c','p','e']);
         $table->string('dtnascimento');
         $table->timestamps();
     });
