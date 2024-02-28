@@ -17,7 +17,7 @@ return new class extends Migration
         $table->string("tipconsulta");
         $table->enum('status', array_column(ConsultaStatus::cases(),'name'));
         $table->string("nomecliente");
-        $table->string("telfone");
+        $table->string("telefone");
         $table->string("CPF");
         $table->string("endereco");
         $table->text('observacao');

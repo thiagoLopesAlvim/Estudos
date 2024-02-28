@@ -29,6 +29,10 @@ class ConsultaService{
         return $this->repository->findONE($id);
     }
 
+    public function findSOME(string $name): stdClass|null{
+        return  $this->repository->findSOME($name);
+    }
+
     public function new(CreateConsultaDTO $dto): stdClass{
         return $this->repository->new($dto);
     }

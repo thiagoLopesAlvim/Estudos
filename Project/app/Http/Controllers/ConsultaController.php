@@ -8,6 +8,8 @@ use App\DTO\Consulta\CreateConsultaDTO;
 use App\DTO\Consulta\UpdateConsultaDTO;
 use App\Services\ConsultaService;
 
+use function Laravel\Prompts\search;
+
 class ConsultaController extends Controller
 {
     //
@@ -15,10 +17,13 @@ class ConsultaController extends Controller
         
     }
     public function index(Request $request){
-        $consultas =$this->service->paginateC(
-            page: $request->get('page',1),
-            perPage: $request->get('per_page',20),
-        );
+        $search = $request->get('search'); 
+        
+            $consultas =$this->service->paginateC(
+                page: $request->get('page',1),
+                perPage: $request->get('per_page',20),
+                filter: $search
+            );
         return view("consultas/index", compact("consultas"));
     }
 

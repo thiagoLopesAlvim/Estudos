@@ -4,6 +4,7 @@ use App\Enums\ConsultaStatus;
 use App\Enums\SupportStatus;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login/login');
 
 });
 Route::get('/test', function () {
@@ -39,3 +40,7 @@ Route::get('/consultas/create',[ConsultaController::class,'create'])->name('cons
 Route::get('/consultas/{id}',[ConsultaController::class,'show'])->name('consultas.show');
 Route::get('/consultas',[ConsultaController::class,'index'])->name('consultas.index');
 Route::post("/consultas",[ConsultaController::class,"store"])->name("consultas.store");
+
+Route::get("/logins",[LoginController::class,'index'])->name('logins.index');
+Route::post('/logins',[LoginController::class,'store'])->name('login.store');
+Route::get('/login',[LoginController::class,'destroy'])->name('login.destroy');

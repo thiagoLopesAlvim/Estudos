@@ -18,3 +18,8 @@ SELECT TOP (1000) [id]
 
 	Alter table [consultas] drop column created_at ;
     Alter table [consultas] drop column updated_at ;
+
+
+Select * from users
+
+Insert into

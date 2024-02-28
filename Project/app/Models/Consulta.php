@@ -12,7 +12,7 @@ class Consulta extends Model
         "tipconsulta",
         "status",
         "nomecliente",
-        "telfone",
+        "telefone",
         "CPF",
         "endereco",
         "observacao",

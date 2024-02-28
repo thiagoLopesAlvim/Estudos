@@ -15,8 +15,8 @@ class ConsultaEloquentORM implements ConsultaRepositoryInterface{
         $result =  $this->model
                         ->where(function($query) use ($filter){
                             if($filter){
-                                $query->where('tipconsulta',$filter);
-                                $query->orWhere('observacao','like',"%{$filter}%");
+                                $query->where('nomecliente',$filter);
+                                $query->orWhere('nomecliente','like',"%{$filter}%");
                             }
                         })
                         ->paginate($perPage,["*"],"page", $page);
@@ -44,6 +44,14 @@ class ConsultaEloquentORM implements ConsultaRepositoryInterface{
      return (object) $support->toArray();
 
     }
+
+    public function findSOME(string $name): stdClass|null{
+        $support = $this->model->where('nomecliente','like','%'.$name.'%')->get();
+            if($support == null){
+                return null;
+            }
+            return (object) $support->toArray();
+    }
     public function delete(string $id): void{
         $this->model->findOrFail($id)->delete();
     }
@@ -52,6 +60,8 @@ class ConsultaEloquentORM implements ConsultaRepositoryInterface{
         $support = $this->model->create((array)$dto);
         return (object) $support->toArray();
     }
+
+    
     public function update(UpdateConsultaDTO $dto): stdClass|null {
         
         if(!$support = $this->model->find($dto->id)){

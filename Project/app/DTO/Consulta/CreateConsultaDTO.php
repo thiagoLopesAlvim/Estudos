@@ -6,7 +6,7 @@ use App\Http\Requests\StoreConsultaRequest;
 class CreateConsultaDTO{
 
     public function __construct(public string $tipconsulta,public string $status,
-    public string $nomecliente,public string $telfone,public string $CPF,
+    public string $nomecliente,public string $telefone,public string $CPF,
     public string $endereco, public string $observacao, public string $tippagamento,public string $dtnascimento){
     }
 
