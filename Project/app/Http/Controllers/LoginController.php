@@ -1,18 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreLoginRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Services\LoginService;
 
 class LoginController extends Controller
 {
+
     public function index(){
         return view("login/login");
     }
 
-    public function store(Request $request){
+ 
+
+    public function store(StoreLoginRequest $request){
         // $request->validate([
         //     "email"=> "required|email",
         //     "password"=> "required"
@@ -28,12 +33,13 @@ class LoginController extends Controller
         $support= $request->input("email");
      
 
-        $user= User::where('email','like','%'.$support.'%');
-        
-            dd($user->password);
+        //$user= (object)$this->service->getAll($support);
+
+        $user= DB::table("users")->where("email",$support)->first();
+            
             //$request->input("email")
        
-        if($user != $request->input("email")){
+        if($user->email != $request->input("email")){
             return redirect()->back()->with("error","email ou senha invalidos");
         }
     

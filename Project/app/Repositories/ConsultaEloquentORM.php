@@ -51,6 +51,9 @@ class ConsultaEloquentORM implements ConsultaRepositoryInterface{
                 return null;
             }
             return (object) $support->toArray();
+
+
+   
     }
     public function delete(string $id): void{
         $this->model->findOrFail($id)->delete();
