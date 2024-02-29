@@ -29,7 +29,8 @@ class StoreConsultaRequest extends FormRequest
             'endereco' => 'min:3|max:255',
             'observacao' => 'required|min:3|max:1000000',
             'tippagamento'=> 'min:1|max:1',
-            'dtnascimento'=>'min:1|max:20'
+            'dtnascimento'=>'min:1|max:20',
+            'dtconsulta'=>'min:1|max:25'
         ];
 
         if($this->method() == 'PUT'){

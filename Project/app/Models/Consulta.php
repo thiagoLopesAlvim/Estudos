@@ -18,5 +18,6 @@ class Consulta extends Model
         "observacao",
         "tippagamento",
         "dtnascimento",
+        "dtconsulta",
     ] ;
 }

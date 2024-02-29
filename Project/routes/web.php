@@ -33,6 +33,8 @@ Route::get('/supports/{id}',[SupportController::class,'show'])->name('supports.s
 Route::get('/supports',[SupportController::class,'index'])->name('supports.index');
 Route::post("/supports",[SupportController::class,"store"])->name("supports.store");
 
+
+Route::get('/consultas/itens/day',[ConsultaController::class,'day'])->name('consultas.day');
 Route::delete('consultas/{id}',[ConsultaController::class,'destroy'])->name('consultas.destroy');
 Route::put('consultas/{id}',[ConsultaController::class,'update'])->name('consultas.update');
 Route::get('consultas/{id}/edit',[ConsultaController::class,'edit'])->name('consultas.edit');

@@ -25,6 +25,14 @@ class ConsultaService{
         );
      }
 
+     public function paginateN(int $page=1, int $perPage=20, string $filter=null): PaginationInterface{
+        return $this->repository->paginateN(
+            page: $page,
+            perPage: $perPage,
+            filter: $filter
+        );
+     }
+
     public function findONE(string $id): stdClass|null{
         return $this->repository->findONE($id);
     }

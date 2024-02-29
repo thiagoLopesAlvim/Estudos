@@ -23,6 +23,7 @@ return new class extends Migration
         $table->text('observacao');
         $table->enum("tippagamento",['d','c','p','e']);
         $table->string('dtnascimento');
+        $table->string('dtconsulta');
         $table->timestamps();
     });
     }
