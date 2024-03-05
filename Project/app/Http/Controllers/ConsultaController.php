@@ -100,10 +100,6 @@ class ConsultaController extends Controller
     }
 
      public function gerapdf(){
-         $consultas= $this->service->getAll();
-        
-         $pdf= PDF::loadView('consultas/relatorio', compact('consultas'));
-
-        return $pdf->setPaper('a4')->stream('Todas_as_consultas');
+      return view('consultas/relatorio');
      }
 }
