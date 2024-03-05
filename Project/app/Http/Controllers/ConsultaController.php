@@ -36,6 +36,22 @@ class ConsultaController extends Controller
         return view("consultas/index", compact("consultas"));
     }
 
+    public function attmdados(Request $request){
+        if(!auth()->check()){
+            return view("login/login");
+        }
+
+        $search = $request->get('search'); 
+        
+            $consultas =$this->service->paginateC(
+                page: 1,
+                perPage: 5,
+                filter: $search
+            );
+        return view("consultas/att/attdados", compact("consultas"));
+
+    }
+
     public function day(Request $request){
         if(!auth()->check()){
             return view("login/login");
@@ -65,7 +81,7 @@ class ConsultaController extends Controller
         $search = $request->get('search');
         $consultas= $this->service->paginateC(
             page: 1,
-            perPage: 20,
+            perPage: 2,
             filter: $search);
         return view("consultas/create", compact("consultas"));
     }
@@ -93,6 +109,19 @@ class ConsultaController extends Controller
             return back();
           };
           return view("consultas.edit", compact("consulta"));
+    }
+
+    public function updatem(Request $request){
+        $auxs = Consulta::where("CPF",$request->CPF)->get();
+       
+        foreach($auxs as $aux){
+
+            $aux->endereco = $request->endereco;
+            $aux->telefone = $request->telefone;
+            $aux->save();
+        }
+
+        return redirect()->route("consultas.index");
     }
 
     public function update( StoreConsultaRequest $request, string $id){
