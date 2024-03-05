@@ -10,6 +10,7 @@ use App\Services\ConsultaService;
 use DateTime;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Date;
+use Barryvdh\DomPDF\Facade\PDF;
 
 use function Laravel\Prompts\search;
 
@@ -97,4 +98,12 @@ class ConsultaController extends Controller
 
         return redirect()->route('consultas.index');
     }
+
+     public function gerapdf(){
+         $consultas= $this->service->getAll();
+        
+         $pdf= PDF::loadView('consultas/relatorio', compact('consultas'));
+
+        return $pdf->setPaper('a4')->stream('Todas_as_consultas');
+     }
 }

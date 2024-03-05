@@ -22,9 +22,15 @@ Route::get('/', function () {
     return view('login/login');
 
 });
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
 Route::get('/test', function () {
     array_column(ConsultaStatus::cases(),'name');    
 });
+
+
 Route::delete('supports/{id}',[SupportController::class,'destroy'])->name('supports.destroy');
 Route::put('supports/{id}',[SupportController::class,'update'])->name('supports.update');
 Route::get('supports/{id}/edit',[SupportController::class,'edit'])->name('supports.edit');
@@ -33,7 +39,7 @@ Route::get('/supports/{id}',[SupportController::class,'show'])->name('supports.s
 Route::get('/supports',[SupportController::class,'index'])->name('supports.index');
 Route::post("/supports",[SupportController::class,"store"])->name("supports.store");
 
-
+Route::get('/consultas/rel/relatorio',[ConsultaController::class,'gerapdf'])->name('consultas.gerapdf');
 Route::get('/consultas/itens/day',[ConsultaController::class,'day'])->name('consultas.day');
 Route::delete('consultas/{id}',[ConsultaController::class,'destroy'])->name('consultas.destroy');
 Route::put('consultas/{id}',[ConsultaController::class,'update'])->name('consultas.update');
