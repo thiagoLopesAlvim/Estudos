@@ -19,5 +19,6 @@ class Consulta extends Model
         "tippagamento",
         "dtnascimento",
         "dtconsulta",
+        "pathImg"
     ] ;
 }

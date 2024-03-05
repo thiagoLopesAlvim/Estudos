@@ -73,7 +73,7 @@ class ConsultaEloquentORM implements ConsultaRepositoryInterface{
         $this->model->findOrFail($id)->delete();
     }
     public function new(CreateConsultaDTO $dto): stdClass{
-        
+       
         $support = $this->model->create((array)$dto);
         return (object) $support->toArray();
     }

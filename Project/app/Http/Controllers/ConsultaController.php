@@ -58,16 +58,31 @@ class ConsultaController extends Controller
 
     }
 
-    public function create(){
+    public function create(Request $request){
         if(!auth()->check()){
             return view("login/login");
         }
-        return view("consultas/create");
+        $search = $request->get('search');
+        $consultas= $this->service->paginateC(
+            page: 1,
+            perPage: 20,
+            filter: $search);
+        return view("consultas/create", compact("consultas"));
     }
 
     public function store(StoreConsultaRequest $request){
+
+       
           
-        $this->service->new(CreateConsultaDTO::makeFromRequest($request)
+        if($request->pathImg){
+        $path = $request->pathImg->store('prontuarios');
+         //  $request->pathImg = $path;
+        }else{
+            $path= 'null';
+        }
+         
+        
+        $this->service->new(CreateConsultaDTO::makeFromRequest($request, $path)
         );
 
         return redirect()->route("consultas.index");
@@ -81,8 +96,15 @@ class ConsultaController extends Controller
     }
 
     public function update( StoreConsultaRequest $request, string $id){
+        if($request->pathImg){
+            $path = $request->pathImg->store('prontuarios');
+             //  $request->pathImg = $path;
+        }
+        else{
+            $path= 'null';
+        }
         
-        $support =  $this->service->update(UpdateConsultaDTO::makeFromRequest($request));
+        $support =  $this->service->update(UpdateConsultaDTO::makeFromRequest($request, $path));
         
         if(!$support){
             return back();

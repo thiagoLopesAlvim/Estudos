@@ -30,7 +30,8 @@ class StoreConsultaRequest extends FormRequest
             'observacao' => 'required|min:3|max:1000000',
             'tippagamento'=> 'min:1|max:1',
             'dtnascimento'=>'min:1|max:20',
-            'dtconsulta'=>'min:1|max:25'
+            'dtconsulta'=>'min:1|max:25',
+            'pathImg'=> 'min:1|image|max:10000',
         ];
 
         if($this->method() == 'PUT'){

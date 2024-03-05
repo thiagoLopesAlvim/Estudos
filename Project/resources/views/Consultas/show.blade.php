@@ -1,7 +1,8 @@
 @extends("layouts.app")
 
 <h1 class="text-3xl font-bold bg-white-300 p-4">Detalhes da Consulta de {{ $consulta->nomecliente}}</h1>
-
+@vite('resources/css/app.css')
+<body onload="carregar()">
 <ul class="list-disc ">
                 <li class="mb-2 font-bold border border-gray-300 border-2 p-2">Nome do Cliente:  {{$consulta->nomecliente}}</li>
                 <li class="mb-2 font-bold border border-gray-300 border-2 p-2">Tipo da Consulta: {{$consulta->tipconsulta}}</li>
@@ -14,8 +15,13 @@
                 <li class="mb-2 font-bold border border-gray-300 border-2 p-2">Data de Nascimento :{{$consulta->dtnascimento}}</li>
                 <li class="mb-2 font-bold border border-gray-300 border-2 p-2">Observação :{{$consulta->observacao}}</li>
                 <li class="mb-2 font-bold border border-gray-300 border-2 p-2">Data e Hora da Consulta :{{$consulta->dtconsulta}}</li>
-    <td>
-        <div class="mb-4 pt-4">
+                @if($consulta->pathImg != 'null')
+                <div class="mb-2 font-bold border border-gray-300 border-2 p-2"></div>
+                <label class="font-bold">Exame:</label>
+                <img src="{{ url("storage/{$consulta->pathImg}")}}" alt="Descrição da Imagem" class="w-60 h-38 rounded-lg shadow-md" id="imagem">
+                <td>
+                <div class="mb-4 pt-4">
+                @endif
         <a href="{{route('consultas.index')}}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Voltar a Todas as Consultas</a>
         <div class="mb-4 pt-4">
     </td>
@@ -27,3 +33,4 @@
     <input type="hidden" value="DELETE" name="_method">
 </form>
 
+</body>

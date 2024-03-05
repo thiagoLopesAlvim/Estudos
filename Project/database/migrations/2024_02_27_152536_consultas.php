@@ -24,6 +24,7 @@ return new class extends Migration
         $table->enum("tippagamento",['d','c','p','e']);
         $table->string('dtnascimento');
         $table->string('dtconsulta');
+        $table->string('pathImg');
         $table->timestamps();
     });
     }

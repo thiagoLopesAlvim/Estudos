@@ -107,7 +107,7 @@
                         <td class="border border-gray-300 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Dinheiro</td>
                         @endif
                         <td class="border border-gray-300 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$consulta->dtnascimento}}</td>
-                        <td class="border border-gray-300 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$consulta->created_at}}</td>
+                        <td class="border border-gray-300 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$consulta->dtconsulta}}</td>
                         <td class="flex items-center px-6 py-4">
                             <a href="{{route('consultas.show',$consulta->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detalhes</a>
                             <a href="{{route('consultas.edit',$consulta->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
