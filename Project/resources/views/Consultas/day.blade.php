@@ -1,5 +1,5 @@
 @extends("layouts.app")
-
+@extends('layouts.header')
 @section('tittle','Consultas')
 
 
@@ -112,9 +112,19 @@
         @endforeach
      </tbody>
 </table>
+
+<br>
+<label class="border border-gray-300 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center"> Copia das consultas para o whatsapp:</label>
+<textarea style="width: 1000px; height: 150px" class="border border-gray-300 px-6 py-4">
+@foreach($consultas->items() as $consulta)
+Nome: {{$consulta->nomecliente}}. Horario: {{$consulta->dtconsulta}}. Idade: {{$consulta->dtnascimento}}.
+
+@endforeach
+</textarea>
+
+<textarea></textarea>
 <x-pagination :paginator="$consultas" />
 <br>
-<a class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 mb-4 pt-4" href="{{route('consultas.index')}}">Consultas</a>
 
 @endsection
 

@@ -1,12 +1,12 @@
 
 @extends("layouts.app")
+<br>
+        <div class=" flex justify-center items-center">
+        <img src="{{ asset('img/logosite.jpg')}}" href="{{route('welcome')}}" class=" rounded-lg shadow-md center" width="200" height="200" id="imagem">
         <br>
+        </div>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <form class="border-4 border-blue-800 rounded-lg max-w-sm mx-auto" action="{{route('login.store')}}" method="post">
+        <form class="border-4 border-gray-700 rounded-lg max-w-sm mx-auto" action="{{route('login.store')}}" method="post">
             <h1 class="text-3xl font-bold bg-white-300 p-4">Realize seu login para utilizar o sistema</h1>
         <br>
         <input type="hidden" value="{{csrf_token()}}" name="_token"> 

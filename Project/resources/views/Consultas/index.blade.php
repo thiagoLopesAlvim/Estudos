@@ -1,5 +1,5 @@
 @extends("layouts.app")
-
+@extends('layouts.header')
 @section('tittle','Consultas')
 
 
@@ -121,8 +121,7 @@
 <div class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
   <span class="font-medium">Lembrete!</span> Quando o cliente realizar o pagamento o capo Status deverá ser alterado para "c" para que seja reconhecido como pago.
 </div>
-<a class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 mb-4 pt-4" href="{{route('welcome')}}">Menu</a>
-        
+       
 @endsection
 
 

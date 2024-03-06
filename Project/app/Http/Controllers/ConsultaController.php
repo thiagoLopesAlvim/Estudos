@@ -62,9 +62,11 @@ class ConsultaController extends Controller
                 perPage: $request->get('per_page',20),
                 filter: $search
             );
-        return view("consultas/day", compact("consultas"));
+            return view("consultas/day", compact("consultas"));
 
     }
+
+
 
     public function show(string|int $id){
        if(!$consulta= $this->service->findONE($id)){
