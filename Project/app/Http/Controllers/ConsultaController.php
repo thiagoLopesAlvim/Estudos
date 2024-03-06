@@ -7,10 +7,7 @@ use App\Http\Requests\StoreConsultaRequest;
 use App\DTO\Consulta\CreateConsultaDTO;
 use App\DTO\Consulta\UpdateConsultaDTO;
 use App\Services\ConsultaService;
-use DateTime;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Date;
-use Barryvdh\DomPDF\Facade\PDF;
 
 use function Laravel\Prompts\search;
 
@@ -65,8 +62,6 @@ class ConsultaController extends Controller
             return view("consultas/day", compact("consultas"));
 
     }
-
-
 
     public function show(string|int $id){
        if(!$consulta= $this->service->findONE($id)){
