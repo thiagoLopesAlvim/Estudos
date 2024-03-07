@@ -17,6 +17,8 @@ para rodar o programa em outra maquina é necessario:
 
 Plugins a serem instalados no composer com o comando "composer require":
 
+composer require jhowbhz/package-apigratis
+
 composer require igorescobar/jquery-mask-plugin
 
 composer global require laravel/installer
