@@ -6,6 +6,8 @@ para rodar o programa em outra maquina é necessario:
 
 3-Instalar o Vite
 
+3.1-Instalar Nodejs
+
 4-Driver do SQL Server
 
 5-Adicionar ao gpedit.msc os Script de inicialização
