@@ -38,6 +38,19 @@ class ConsultaEloquentORM implements ConsultaRepositoryInterface{
         return new PaginationPresenter($result);
                     
     }
+
+    public function paginateB(int $page=1, int $perPage=20,string $filter=null): PaginationInterface{
+       
+            $result =  $this->model->where(function($query) use ($filter){
+                            if($filter){
+                                $query->Where('dtnascimento','like',"%{$filter}%");
+                            
+                            }
+                        })->distinct("nomecliente")->paginate($perPage,["nomecliente","telefone","CPF","endereco","dtnascimento"],"page", $page);
+                        //  ->groupBy('CPF')
+        return new PaginationPresenter($result);
+                    
+    }
     public function getAll(string $filter = null): array {
         return $this->model
                         ->where(function($query) use ($filter){

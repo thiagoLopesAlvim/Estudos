@@ -41,6 +41,7 @@ Route::post("/supports",[SupportController::class,"store"])->name("supports.stor
 
 Route::get("/consultas/att/attdados",[ConsultaController::class,'attmdados'])->name('consultas.attdados');
 Route::get('/consultas/rel/relatorio',[ConsultaController::class,'gerapdf'])->name('consultas.gerapdf');
+Route::get('/consultas/birthd',[ConsultaController::class,'birthd'])->name('consultas.birthd');
 Route::get('/consultas/itens/day',[ConsultaController::class,'day'])->name('consultas.day');
 Route::delete('consultas/{id}',[ConsultaController::class,'destroy'])->name('consultas.destroy');
 Route::put('consultas/{id}',[ConsultaController::class,'update'])->name('consultas.update');

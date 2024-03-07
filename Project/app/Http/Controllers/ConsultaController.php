@@ -63,6 +63,21 @@ class ConsultaController extends Controller
 
     }
 
+
+    public function birthd(Request $request){
+        if(!auth()->check()){
+            return view("login/login");
+        }
+        $search = '/'.Carbon::now()->format('m/'); 
+
+        $consultas =$this->service->paginateB(
+            page: $request->get('page',1),
+            perPage: $request->get('per_page',20),
+            filter: $search
+        );
+        return view("consultas/birthd", compact("consultas"));
+    }
+
     public function show(string|int $id){
        if(!$consulta= $this->service->findONE($id)){
          return back();
