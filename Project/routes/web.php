@@ -39,6 +39,7 @@ Route::get('/supports/{id}',[SupportController::class,'show'])->name('supports.s
 Route::get('/supports',[SupportController::class,'index'])->name('supports.index');
 Route::post("/supports",[SupportController::class,"store"])->name("supports.store");
 
+
 Route::get("/consultas/att/attdados",[ConsultaController::class,'attmdados'])->name('consultas.attdados');
 Route::get('/consultas/rel/relatorio',[ConsultaController::class,'gerapdf'])->name('consultas.gerapdf');
 Route::get('/consultas/birthd',[ConsultaController::class,'birthd'])->name('consultas.birthd');
@@ -49,6 +50,8 @@ Route::get('consultas/{id}/edit',[ConsultaController::class,'edit'])->name('cons
 Route::get('/consultas/create',[ConsultaController::class,'create'])->name('consultas.create');
 Route::get('/consultas/{id}',[ConsultaController::class,'show'])->name('consultas.show');
 Route::get('/consultas',[ConsultaController::class,'index'])->name('consultas.index');
+Route::post("/",[ConsultaController::class,"testeapi"])->name("consultas.testeapi");
+Route::post("/",[ConsultaController::class,"birthdapi"])->name("consultas.birthdapi");
 Route::post("/consultas",[ConsultaController::class,"store"])->name("consultas.store");
 Route::post("/consultas/attdadosaf",[ConsultaController::class,"updatem"])->name("consultas.updatem");
 

@@ -75,7 +75,26 @@
 </table>
 
 <br>
+<form method="POST" action="{{route('consultas.birthdapi')}}">
+<label class="border border-gray-300 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center"> Digite aqui sua mensagem de aniversario:</label>
+<textarea style="width: 1000px; height: 150px" class="border border-gray-300 px-6 py-4" name="message">
 
+</textarea>
+
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        {{ Session::get('success') }}
+    </div>
+@endif
+@if(Session::has('error'))
+    <div class="alert alert-danger">
+        {{ Session::get('error') }}
+    </div>
+@endif
+
+<input type="hidden" value="{{csrf_token()}}" name="_token"> 
+<button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Enviar</button> 
+</form>
 <x-pagination :paginator="$consultas" />
 <br>
 

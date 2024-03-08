@@ -8,8 +8,11 @@ use App\DTO\Consulta\CreateConsultaDTO;
 use App\DTO\Consulta\UpdateConsultaDTO;
 use App\Services\ConsultaService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
+use function Laravel\Prompts\alert;
 use function Laravel\Prompts\search;
+use Illuminate\Support\Facades\Session;
 
 class ConsultaController extends Controller
 {
@@ -78,6 +81,55 @@ class ConsultaController extends Controller
         return view("consultas/birthd", compact("consultas"));
     }
 
+    public function birthdapi(Request $request){
+        if(!auth()->check()){
+            return view("login/login");
+        }
+        $search = '/'.Carbon::now()->format('m/'); 
+
+        $consultas =$this->service->paginateB(
+            page: $request->get('page',1),
+            perPage: $request->get('per_page',20),
+            filter: $search
+        );
+        foreach($consultas->items() as $consulta){
+                $removecarac = ['-','(',')'];
+                $aux = $consulta->telefone;
+                $auxsemc = str_replace($removecarac,'', $aux);
+                $stringSemEspacos = preg_replace('/\s+/', '', $auxsemc);
+                $stringfinal= '55'.$stringSemEspacos;
+            $response= Http::asForm()->post('localhost:8000/zdg-message',[
+                'number' =>$stringfinal,
+                'message' =>$request->message
+            ]);
+            
+            if($response->successful()){
+                Session::flash('success', 'Ação realizada com sucesso!');
+
+            }else{
+                Session::flash('error', 'Mensagem nao enviada!');
+            }
+    
+        }
+            return redirect()->back(); 
+    }
+
+    public function testeapi(Request $request){ 
+        $response= Http::asForm()->post('localhost:8000/zdg-message',[
+            'number' =>$request->telefonewp,
+            'message' =>$request->message
+        ]);
+        if($response->successful()){
+            Session::flash('success', 'Ação realizada com sucesso!');
+
+        }else{
+            Session::flash('error', 'Mensagem nao enviada!');
+        }
+        
+            return redirect()->back(); 
+        //view('consultas/teste');
+    }
+
     public function show(string|int $id){
        if(!$consulta= $this->service->findONE($id)){
          return back();
@@ -99,9 +151,7 @@ class ConsultaController extends Controller
     }
 
     public function store(StoreConsultaRequest $request){
-
-       
-          
+   
         if($request->pathImg){
         $path = $request->pathImg->store('prontuarios');
          //  $request->pathImg = $path;

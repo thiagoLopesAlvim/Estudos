@@ -114,14 +114,34 @@
 </table>
 
 <br>
+<form method="POST" action="{{route('consultas.testeapi')}}">
+    <div class="flex items-center mb-4 pt-4" >
+    <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">Numero para ser enviado no whatsapp: </label> <br>
+
+    <input id="dtct" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="width: 200px;" type="text" placeholder="Data e Hora da Consulta" name="telefonewp"value="5531988780711">
+    </div>
 <label class="border border-gray-300 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center"> Copia das consultas para o whatsapp:</label>
-<textarea style="width: 1000px; height: 150px" class="border border-gray-300 px-6 py-4">
+<textarea style="width: 1000px; height: 150px" class="border border-gray-300 px-6 py-4" name="message">
 @foreach($consultas->items() as $consulta)
 Nome: {{$consulta->nomecliente}}. Horario: {{$consulta->dtconsulta}}. Idade: {{$consulta->dtnascimento}}.
 
 @endforeach
 </textarea>
 
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        {{ Session::get('success') }}
+    </div>
+@endif
+@if(Session::has('error'))
+    <div class="alert alert-danger">
+        {{ Session::get('error') }}
+    </div>
+@endif
+
+<input type="hidden" value="{{csrf_token()}}" name="_token"> 
+<button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Enviar</button> 
+</form>
 <textarea></textarea>
 <x-pagination :paginator="$consultas" />
 <br>
